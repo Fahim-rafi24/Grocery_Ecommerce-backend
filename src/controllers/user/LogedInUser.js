@@ -6,30 +6,22 @@ import { commonErrorMassage } from "../../env.js"
 import { User } from "../../models/user.model.js"
 
 
-const userSignup = AsyncHandeler(async (req, res) => {
+const LogedInUser = AsyncHandeler(async (req, res) => {
     try {
-        const { name, email } = req.body;
+        const { email } = req.body;
 
         // Validate required fields
-        if (!name || !email) {
+        if (!email) {
             return res.status(400).send(new ApiError(400, { message: commonErrorMassage }));
         };
 
         // Check if the user already exists
         const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).send(new ApiError(400, { message: 'User already exists' }));
-        }
-        // Create a new user instance
-        const newUser = new User({ name, email });
-
-        // Save the user to the database
-        await newUser.save();
 
         // send return
         res
             .status(createStatusCode)
-            .json(new ApiResponse(createStatusCode, {}))
+            .json(new ApiResponse(createStatusCode, existingUser))
     }
     catch (error) {
         res
@@ -38,4 +30,4 @@ const userSignup = AsyncHandeler(async (req, res) => {
     }
 })
 
-export default userSignup
+export default LogedInUser
