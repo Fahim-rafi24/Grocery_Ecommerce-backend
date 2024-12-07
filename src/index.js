@@ -6,12 +6,9 @@ import { Local_PORT } from "./env.js";
 
 
 
-
-
 app.get('/', (req, res) => {
     res.send('Chaldal : API SERVER RUN')
 })
-
 
 
 
@@ -26,4 +23,3 @@ ConnectDB()
     .catch(err => {
         console.log("DB connection error", err);
     })
-
