@@ -1,11 +1,10 @@
 import jwt from "jsonwebtoken";
 
-const create_accessJwt = async(id, email) => {
+const create_accessJwt = async(id) => {
     const accessToken = jwt.sign(
         // payload
         {
             _id: id,
-            email : email
         },
         // secret
         process.env.JWT_REFRESH_TOKEN_KEY,

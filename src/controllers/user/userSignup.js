@@ -18,7 +18,7 @@ const genarateAccessAndRefressToken = async (userID) => {
         }
 
         // genarete token
-        const accessToken = await create_accessJwt(user._id, user.email);
+        const accessToken = await create_accessJwt(user._id);
         const refreshToken = await create_refreshJwt(user._id, user.email);
 
         // save refreshToken in DB

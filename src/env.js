@@ -21,6 +21,6 @@ export const Options_For_Cookie = {
     httpOnly: true,
     // secret: true,  // TODO : true for deploy site
     secure: false,    // just use for locally run
-    sameSite: "strict",
+    sameSite: "lax",
     maxAge: 60 * 60 * 1000
 }

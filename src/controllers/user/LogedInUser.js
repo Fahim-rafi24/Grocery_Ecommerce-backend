@@ -1,27 +1,20 @@
 import { AsyncHandeler } from "../../utils/AsyncHandeler.js";
 import { ApiResponse } from "../../utils/ApiResponse.js";
 import { ApiError } from "../../utils/ApiError.js"
-import { createStatusCode } from "../../env.js";
-import { commonErrorMassage } from "../../env.js"
-import { User } from "../../models/user.model.js"
+import { createStatusCode, Options_For_Cookie } from "../../env.js";
+
 
 
 const LogedInUser = AsyncHandeler(async (req, res) => {
     try {
-        const { email } = req.body;
-
-        // Validate required fields
-        if (!email) {
-            return res.status(400).send(new ApiError(400, { message: commonErrorMassage }));
-        };
-
-        // Check if the user already exists
-        const existingUser = await User.findOne({ email });
+        const user = req.user;
+        const accessToken = req.accessToken;
 
         // send return
         res
+            .cookie("accessToken", accessToken, Options_For_Cookie)
             .status(createStatusCode)
-            .json(new ApiResponse(createStatusCode, existingUser))
+            .json(new ApiResponse(createStatusCode, user))
     }
     catch (error) {
         res
