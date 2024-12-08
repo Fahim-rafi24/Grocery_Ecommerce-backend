@@ -6,6 +6,10 @@ const productSchema = new Schema({
         require: true,
         trim: true
     },
+    whoAdded: {
+        type: String,
+        require: true
+    },
     product_Volume:{
         type: String,
         require: true,

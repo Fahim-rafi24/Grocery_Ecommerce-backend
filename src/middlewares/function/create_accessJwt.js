@@ -7,7 +7,7 @@ const create_accessJwt = async(id) => {
             _id: id,
         },
         // secret
-        process.env.JWT_REFRESH_TOKEN_KEY,
+        process.env.JWT_ACCESS_TOKEN_KEY,
         // token expiry date
         {expiresIn: process.env.JWT_REFRESH_TOKEN_TIME}
     );

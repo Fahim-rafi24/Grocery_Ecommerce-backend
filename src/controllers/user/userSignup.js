@@ -57,12 +57,10 @@ const userSignup = AsyncHandeler(async (req, res) => {
         // create Jwt token
         const { accessToken, refreshToken } = await genarateAccessAndRefressToken(newUser._id);  // genarateAccessAndRefressToken
 
-        // await newUser.save();
 
         // send return
         res
             .cookie("accessToken", accessToken, Options_For_Cookie)
-            .cookie("refreshToken", refreshToken, Options_For_Cookie)
             .status(createStatusCode)
             .json(new ApiResponse(createStatusCode, {}))
     }
