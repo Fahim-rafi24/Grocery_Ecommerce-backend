@@ -16,10 +16,8 @@ const router = Router();
 router.route("/check").get(api);  // just check API call - API IS OK.
 // reguler route
 // user route
-router.route("/LogedInUser").post(LogedInUser)  // check firebase recheck sending email & send user data from API server
+router.route("/logedInUser").post(LogedInUser)  // check firebase recheck sending email & send user data from API server
 router.route("/userSignup").post(userSignup)
-// router.route("/userLogin").post(userLogin)
-// router.route("/userSignup").post(userLogin)
 // admin route
 
 
