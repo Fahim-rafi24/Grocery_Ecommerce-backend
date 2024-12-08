@@ -18,16 +18,16 @@ const decode = (token, tokenName, secretKey) => {
 // Middleware to check both access and refresh tokens is valid
 const Jwt_Can_Valid = async (req, res, next) => {
     try {
-        // check user is valid
-        const obj = req.body;
+
+        const data = req.body;  // this data can take = {id , obj};
         const accessToken = req.cookies.accessToken;
         if (!accessToken) {
             return res.status(400).send(new ApiError(400, { message: commonErrorMassage }));
         }
-        if (!obj || !obj.id) {
+        if (!data || !data.id) {
             return res.status(400).send(new ApiError(400, { message: commonErrorMassage }));
         }
-        const _id = obj.id;
+        const _id = data.id;
         const user = await User.findById({ _id });
         if (!user) {
             return res.status(404).send(new ApiError(404, { message: commonErrorMassage }));
@@ -40,11 +40,12 @@ const Jwt_Can_Valid = async (req, res, next) => {
             const decodedAccessToken = decode(accessToken, "access", process.env.JWT_ACCESS_TOKEN_KEY);
 
             if (decodedAccessToken._id === decodedRefreshToken._id) {
-                // return
+
+                // return & pass in next
                 req.user = user;
-                req.obj = obj.obj;
+                req.obj = data.obj;
                 next();
-            } else{
+            } else {
                 return res.status(404).send(new ApiError(404, { message: commonErrorMassage }));
             }
         } catch (err) {
