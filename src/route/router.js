@@ -11,6 +11,7 @@ import {addNewProduct} from "../controllers/admin/addNewProduct.js";
 import {User_Can_Admin} from "../middlewares/User_Can_Admin.js";
 import SearchAPI from "../controllers/common/SearchAPI.js";
 import TargetedSearchApi from "../controllers/common/TargetedSearchAPI.js";
+import IsPopuler from "../controllers/common/IsPopuler.js";
 
 // make a route
 const router = Router();
@@ -23,11 +24,11 @@ router.route("/check").get(api);  // just check API call - API IS OK.
 // reguler route
 router.route("/search").get(SearchAPI); // it's use for search bar 
 router.route("/targeted/search").post(TargetedSearchApi); // it's use for all sidebar industry, catagory, subcatagory data call
-
+router.route("/isPopuler").get(IsPopuler);  // send all populer items as a arr
 
 // user route
 router.route("/logedInUser").post(Jwt_LogedIn_Midd, LogedInUser);  // check firebase recheck sending email & send user data from API server
-router.route("/userSignup").post(userSignup);
+router.route("/userSignup").post(userSignup);  // new user account create route
 
 
 // admin route
