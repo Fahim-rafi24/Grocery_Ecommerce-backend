@@ -20,6 +20,9 @@ const IsHome = AsyncHandeler(async (req, res) => {
             },
             {
                 $sample: { size: 12 } // Randomly select 10 products
+            },
+            {
+                $project: { _id:1, name:1, Price:1, product_Volume:1, store_Volume:1, img:1}
             }
         ]);
 
