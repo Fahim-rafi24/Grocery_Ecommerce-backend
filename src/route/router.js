@@ -12,6 +12,7 @@ import {User_Can_Admin} from "../middlewares/User_Can_Admin.js";
 import SearchAPI from "../controllers/common/SearchAPI.js";
 import TargetedSearchApi from "../controllers/common/TargetedSearchAPI.js";
 import IsPopuler from "../controllers/common/IsPopuler.js";
+import IsHome from "../controllers/common/IsHome.js";
 
 // make a route
 const router = Router();
@@ -22,6 +23,7 @@ router.route("/check").get(api);  // just check API call - API IS OK.
 
 
 // reguler route
+router.route("/isHome").post(IsHome); // it's use for home random search
 router.route("/search").get(SearchAPI); // it's use for search bar 
 router.route("/targeted/search").post(TargetedSearchApi); // it's use for all sidebar industry, catagory, subcatagory data call
 router.route("/isPopuler").get(IsPopuler);  // send all populer items as a arr
