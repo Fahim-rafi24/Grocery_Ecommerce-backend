@@ -13,6 +13,7 @@ import SearchAPI from "../controllers/common/SearchAPI.js";
 import TargetedSearchApi from "../controllers/common/TargetedSearchAPI.js";
 import IsPopuler from "../controllers/common/IsPopuler.js";
 import IsHome from "../controllers/common/IsHome.js";
+import IsCard_IsFav from "../controllers/common/IsCard&IsFav.js";
 
 // make a route
 const router = Router();
@@ -27,6 +28,7 @@ router.route("/isHome").post(IsHome); // it's use for home random search
 router.route("/search").get(SearchAPI); // it's use for search bar 
 router.route("/targeted/search").post(TargetedSearchApi); // it's use for all sidebar industry, catagory, subcatagory data call
 router.route("/isPopuler").get(IsPopuler);  // send all populer items as a arr
+router.route("/IsCard_IsFav").post(IsCard_IsFav);
 
 // user route
 router.route("/logedInUser").post(Jwt_LogedIn_Midd, LogedInUser);  // check firebase recheck sending email & send user data from API server
