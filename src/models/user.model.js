@@ -41,7 +41,10 @@ const userSchema = new Schema({
     Permanent_location:{
         type: String
     },
-    current_location:{
+    Current_location:{
+        type: String
+    },
+    Montly_income:{
         type: String
     },
     refreshToken:{  //Jwt token can seved here
