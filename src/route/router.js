@@ -17,6 +17,7 @@ import IsCard_IsFav from "../controllers/common/IsCard&IsFav.js";
 import CalculateProductCost from "../controllers/common/CalculateProductCost.js";
 import UserInfo from "../controllers/user/UserInfo.js";
 import UpdateUserInfo from "../controllers/user/UpdateUserInfo.js";
+import Pay_add_product from "../controllers/user/Pay_add_product.js";
 
 // make a route
 const router = Router();
@@ -40,6 +41,7 @@ router.route("/logedInUser").post(Jwt_LogedIn_Midd, LogedInUser);  // check fire
 router.route("/userSignup").post(userSignup);  // new user account create route
 router.route("/UserInfo").post(Jwt_Can_Valid, UserInfo)  //call user information
 router.route("/UpdateUserInfo").post(Jwt_Can_Valid, UpdateUserInfo)  //update user information
+router.route("/Pay_add_product").post(Jwt_Can_Valid, Pay_add_product)  //update user information
 
 
 // admin route

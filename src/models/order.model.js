@@ -1,35 +1,21 @@
 import mongoose, { Schema } from "mongoose";
 
-
-
 // subSchema
 const subSchema = new Schema({
-    item_id: {
-        type: String,
-        require: true
+    product: {
+        type: mongoose.Schema.Types.ObjectId, // Reference to the Product model
+        ref: "Product", // Reference to the 'Product' model
+        required: true,
     },
-    item_name: {
-        type: String,
-        require: true
-    },
-    item_volume: {
+    quantity: {
         type: Number,
-        require: true
+        required: true,
     },
-    item_price: {
-        type: Number,
-        require: true
-    },
-    item_img: {
-        type: String,  // take just link
-        require: true
-    },
-    item_info: {
+    price: {
         type: String,
-        require: true
+        required: true,
     },
 });
-
 
 // main Schema
 const orderSchema = new Schema({
@@ -37,6 +23,15 @@ const orderSchema = new Schema({
     user_id: {
         type: String,
         require: true,
+    },
+    user_details: {
+        type: mongoose.Schema.Types.ObjectId, // This will store the ObjectId of the user
+        ref: 'User', // Reference to the 'User' model
+        required: true, // Ensure user details are populated
+    },
+    payAmount: {
+        type: String,
+        require: true
     },
     order_products: [subSchema]
 }, { timestamps: true });
