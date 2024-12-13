@@ -25,9 +25,15 @@ const orderSchema = new Schema({
         require: true,
     },
     user_details: {
-        type: mongoose.Schema.Types.ObjectId, // This will store the ObjectId of the user
-        ref: 'User', // Reference to the 'User' model
-        required: true, // Ensure user details are populated
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+    order_status: {
+        type: String,
+        enum: ['Pending', 'Delivery', 'Cancel'],
+        default: 'Pending',
+        required: true,
     },
     payAmount: {
         type: String,
