@@ -7,15 +7,15 @@ import { Order } from "../../models/order.model.js";
 
 
 
-const OrderPandingStatus = AsyncHandeler(async (req, res) => {
+const OrderAdminStatus = AsyncHandeler(async (req, res) => {
     try {
-        // const _id = req.user._id;
-        // const obj = req.obj;
+        const _id = req.user._id;
+        const value = req.obj.searchValue;
 
         const ordersList = await Order.aggregate([
             {
                 $match: {
-                    order_status: "Pending",
+                    order_status: value,
                 },
             },
             {
@@ -109,4 +109,4 @@ const OrderPandingStatus = AsyncHandeler(async (req, res) => {
     }
 })
 
-export default OrderPandingStatus
+export default OrderAdminStatus

@@ -19,6 +19,7 @@ import UserInfo from "../controllers/user/UserInfo.js";
 import UpdateUserInfo from "../controllers/user/UpdateUserInfo.js";
 import Pay_add_product from "../controllers/user/Pay_add_product.js";
 import OrderStatus from "../controllers/user/OrderStatus.js";
+import OrderAdminStatus from "../controllers/admin/OrderAdminStatus.js";
 
 // make a route
 const router = Router();
@@ -48,6 +49,7 @@ router.route("/order_status").post(Jwt_Can_Valid, OrderStatus)  //show all Order
 
 // admin route
 router.route("/product_add").post(Jwt_Can_Valid, User_Can_Admin, addNewProduct);
+router.route("/Order_admin_status").post(Jwt_Can_Valid, User_Can_Admin, OrderAdminStatus);
 
 
 export default router  // router use as  UserRouter in ( app.js )
